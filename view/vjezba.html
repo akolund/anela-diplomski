@@ -1,0 +1,129 @@
+
+- uses key/value pairs - {"name":"Brad"}
+- file type is ".json" - must be valid and
+- MIME type associatted with JSON is "Aplication/json"
+    for REST API and if you wonna send JSON, use this in header
+
+JSON EXAMPLE
+{
+  "name":"Brad", --> usesstringas value. it uses ""
+  "age":35, --> number, doesnt need to have ""
+  "address":{ --> Object
+      "street":"5 main st",
+      "city":"Boston"
+    }
+  "children":["Brianna", "Nicholas"]  --> Array of strings
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <title>Vjezba JSON Crash </title>
+</head>
+
+  <body>
+    <ul id = "people"> </ul> <!--NIŠTA NE IDE UNUTRA, HVATA GA FOR PETLJA  -->
+    <script>
+// // var person = {
+// //   name:"Brad",
+// //   age:35
+// // }
+// //   console.log(person);  //--> Object { name: "Brad" } ali nije valid JSON forma jer nema "" oko key
+// //   console.log(person.age); //--> 35
+//
+// // var person = {
+// //   name:"Brad",
+// //   age:35,
+// //   email:function(){
+// //     return 'blbala@gmail.com';
+// //   }
+// // }
+//   // console.log(person.email()); //-->blbala@gmail.com      ALI TO NIJE VALIDAN JSON!
+// // var person = {
+// //   name:"Brad",
+// //   age:35
+// // }
+//
+// // person=JSON.stringify(person);  //pretvara u validan JSON
+// // //   console.log(person); //-->  {"name":"Brad","age":35}
+// //
+// //   person = JSON.parse(person); //pretvara ga nazad u object ALI  u kombinaciji s stringify
+// //  console.log(person); // --> Object { name: "Brad", age: 35 }
+// //
+// // var person = {
+// //   name:"Brad",
+// //   age:35,
+// //   address:{
+// //     street:"5 main st",
+// //     city: "Boston"
+// //   },
+// //   children:["Brianna","Nicholas"]
+// // }
+// //
+// // console.log(person.address.street);  // --> 5 main st
+// // console.log(person.children[1]); // --> Nicholas
+//
+//
+    // var people = [
+    //   {
+    //     name:"Brad",
+    //     age: 35
+    //   },
+    //   {
+    //     name:"John",
+    //     age: 30
+    //   },
+    //   {
+    //     name:"Sara",
+    //     age: 25
+    //   }
+//     ]
+//
+// // console.log(people[1]);  // --> 5 main st Object { name: "John", age: 30 }
+// // console.log(people[1].age); // --> 30
+//     // for(var i = 0; i < people.length; i++){
+//       // console.log(people[i]);  // -->   Object { name: "Brad", age: 35 } >> Object { name: "John", age: 30 } >> Object { name: "Sara", age: 25 }
+//     // console.log(people[i].name);  // --> Brad John Sara
+//     // }
+//
+//     var output = '';
+//     for(var i = 0; i < people.length; i++){
+//       output += '<li>' +people[i].name+'</li>';
+//     }
+//     document.getElementById('people').innerHTML = output;  //Brad John Sara u listi prikazano
+
+
+
+var xhttp = new XMLHttpRequest();  //browser ima HTTPRequest object,  tako da cemo tu pristupiti i ubaciti varijablu xhttp
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {    // readyState == 4 znaci da je response snimljen, status == 200 ovo je http status koji znaci da je sve u red
+
+      //   console.log(xhttp.responseText); // prikaze cijeli json u  consolelog
+      var response = JSON.parse(xhttp.responseText); //treba upakirati u JSON.parse jer ne moze procitati da je JSON
+
+        var people = response.people;
+
+         var output = '';
+         for(var i = 0; i < people.length; i++){
+           output += '<li>' +people[i].name+'</li>';
+      }
+
+         document.getElementById('people').innerHTML = output;  //Brad John Sara u listi prikazano
+
+
+
+
+
+
+    }
+};
+xhttp.open("GET", "../config/vjezba.json", true);
+xhttp.send();
+    </script>
+  </body>
+
+</html>

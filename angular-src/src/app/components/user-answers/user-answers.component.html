@@ -1,0 +1,36 @@
+<p>
+  user-answers works!
+</p>
+
+<div>
+Eej {{answers}}
+
+</div>
+{{typee}}
+<div class="form-group">
+
+    <div *ngFor="let item of survey_questions" >
+
+    <p>&#9826; {{item.question_name}} </p>
+
+       <!-- //////////////////ODGOVORI -->
+     <div *ngFor="let question of item.question_choices" >
+
+         <label>
+           <!-- //ovaj je donekle ok -->
+           <!-- <input [type]="item.question_type === 'multy' ? 'checkbox' : 'radio'" value="{{question}}"  name="list_name" [(ngModel)]="radioSelected"  (change)="getOdgovori(question)"  />  <span>{{question}}</span> -->
+
+
+              <input [type]="item.question_type === 'multy' ? 'checkbox' : 'radio'" value="{{question}}" name="rememberMe" [(ngModel)]="rememberMe">  <span>{{question}}</span>
+<!-- <input  [type]="item.question_type === 'multy' ? 'checkbox':false " [type]="item.question_type ===  'single' ? 'radio' : 'text'" value="{{question}}" name="list_name" [(ngModel)]="radioSelected" (change)="getOdgovori(question)" /> <span>{{question}}</span> -->
+              <!-- <input type= {{question_type}} value="{{question}}" />  <span>{{question}}</span> -->
+              {{item.question_type}}
+<!-- <input [type]="item.question_type === 'multy' ? 'checkbox' : item.question_type === 'single' ? 'radio' : 'text'"  value="{{question}}" name={{question}}  (change)="getOdgovori(question)" /> <span>{{question}}</span> -->
+
+        </label>
+
+
+      </div>
+    </div>
+</div>
+<button (click)="getOdgovori(event)" class="button">Pošalji</button>

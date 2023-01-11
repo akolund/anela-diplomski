@@ -1,0 +1,51 @@
+<p>
+  survey-id works!
+</p>
+odgovori {{answers}}
+<button (click)="getSurveysQuestion()"> JSON </button>
+<app-user-answers (answersEvent)=receiveAnswers($event) ></app-user-answers>
+  <a [routerLink]="['/survey/user_answers', id ]" component={UserAnswersComponent} [routerLinkActive]="['active']"  > Link za anketu  </a>
+<form>
+  <!-- <a [routerLink]="['/survey', survey._id ]" component={SurveyIdComponent} [routerLinkActive]="['active']" >{{survey.survey_name}} </a> -->
+
+    <div >
+      <input type="text"  placeholder=""  [(ngModel)]="question_name" name="question_name" class="form-control" #reference >
+    </div>
+      <!-- <input type="text" [(ngModel)]="question_type" name="question_type" class="form-control" placeholder="Add question type"> -->
+      <form #f="ngForm">
+        <select  name="name"  [(ngModel)]="question_type">
+          <option [ngValue]="null">-- select --</option>
+            <option *ngFor="let type of question_typeValue" [value]="type.name">
+            {{ type.name }}
+          </option>
+        </select>
+      </form>
+        <!-- <input type="text" [(ngModel)]="question_choices" name="question_choices" class="form-control" placeholder=""> -->
+      <textarea [(ngModel)]="textarea" name="textarea" (ngModelChange)="parseTextArea()" placeholder=""></textarea>
+
+
+      <input type="button" (click)="addQuestion($event)" value="Save" class="btn btn-success">
+      <div *ngIf="errors" class="alert alert-danger">{{ errors }}</div>
+            <!--IZLISTANA PITANJA -->
+</form>
+
+  <div class="question-list">
+
+    <div *ngFor="let item of survey_questions" >
+
+    <div><p>&#9826; {{item.question_name}} </p></div>
+    <input type="text"  placeholder=""  [(ngModel)]="item.question_name" name="item.question_name" on-focusout="renameQuestion(item.question_name)" class="form-control"  >
+      {{newName}}
+    <!-- <input name="date" type="text" (focus)="focusFunction()" (focusout)="focusOutFunction()"> -->
+
+      <div *ngFor="let question of item.question_choices" >
+        <div><p>&#10004; {{question}}</p></div>
+        <!-- <div>  {{item.question_type}}</div>
+        <div> {{item.question_choices}}</div> -->
+        <!-- <input type="button" (click)="updateQuestion(item.question_name)" value="Update" class="btn btn-green"> -->
+      </div>
+      <input type="button" (click)="removeQuestion(item.question_name)" value="Delete" class="btn btn-danger">
+
+  </div>
+
+</div>

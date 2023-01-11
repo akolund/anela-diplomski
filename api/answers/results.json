@@ -1,0 +1,44 @@
+{
+	"data": [{
+		"question_id": "1",
+		"question_name": "pris1",
+		"answer_id": "1",
+		"answer_value": "5",
+		"answer_body": "Prihvacam"
+	},
+	{
+		"question_id": "2",
+		"question_name": "dk",
+		"answer_id": "2",
+		"answer_value": "1",
+		"answer_body": "18-35"
+	},
+	{
+		"question_id": "3",
+		"question_name": "spol",
+		"answer_id": "3",
+		"answer_value": "1",
+		"answer_body": "Zensko"
+	},
+	{
+		"question_id": "4",
+		"question_name": "dob",
+		"answer_id": "4",
+		"answer_value": "1",
+		"answer_body": "26"
+	},
+	{
+		"question_id": "3",
+		"question_name": "spol",
+		"answer_id": "5",
+		"answer_value": "2",
+		"answer_body": "Musko"
+	},
+	{
+		"question_id": "1",
+		"question_name": "pris1",
+		"answer_id": "6",
+		"answer_value": "2",
+		"answer_body": "Ne pristajem"
+	}]
+}

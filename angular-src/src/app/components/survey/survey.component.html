@@ -1,0 +1,24 @@
+<p>
+  survey works!
+</p>
+
+  <form>
+      <div class="form-group">
+        <input type="text" [(ngModel)]="survey_name" name="survey_name" class="form-control" placeholder="Add survey">
+        <br>
+        <input type="text" [(ngModel)]="survey_description" name="survey_description" class="form-control" placeholder="Add description">
+        <br>
+        <input type="button" (click)="addSurvey($event)" value="Save" class="btn btn-success">
+      </div>
+</form>
+
+<div class="survey-list">
+  <div *ngFor="let survey of profile_surveys">
+    <div class="col-md-7" >
+    <a [routerLink]="['/survey', survey._id ]" component={SurveyIdComponent} [routerLinkActive]="['active']" (click)="clickLink(survey._id)" >{{survey.survey_name}} </a>
+    </div>
+    <div class="col-md-4">
+      <input type="button" (click)="deleteSurvey(survey._id)" value="Delete" class="btn btn-danger">
+    </div>
+  </div>
+</div>
